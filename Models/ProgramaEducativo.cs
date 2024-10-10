@@ -78,7 +78,6 @@ class ProgramaEducativo
             contadorEstudiantes++;
         }
 
-
         return contadorEstudiantes > 0 ? sumaPromedios / contadorEstudiantes : 0;
     }
 
@@ -108,6 +107,8 @@ class ProgramaEducativo
             Console.WriteLine("No hay estudiantes en el programa");
         }
 
+        Console.WriteLine("Ranking de estudiantes:");
+        
         var ranking = estudiantes.OrderByDescending(e => e.CalcularPromedio());
         var posicion = 1;
         foreach (var estudiante in ranking) {
@@ -135,6 +136,16 @@ class ProgramaEducativo
             Console.WriteLine($"{estudiante.Nombre} - Con promedio de: {estudiante.CalcularPromedio():F2}");
         }
 
+        }
+
+        public void VisualizarAsignaturas() {
+            if (asignaturas.Count == 0) {
+                Console.WriteLine("No hay asignaturas que visualizar");
+            }
+
+            foreach(var asig in asignaturas) {
+                Console.WriteLine($"{asig.Nombre} Tiene {asig.Creditos} créditos");
+            }
         }
 
 }
