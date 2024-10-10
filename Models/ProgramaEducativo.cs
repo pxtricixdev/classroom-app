@@ -4,11 +4,12 @@ namespace Models;
 class ProgramaEducativo
 {
     private List<Estudiante> estudiantes;
+    private List<Asignatura> asignaturas;
     
-
     public ProgramaEducativo()
     {
         estudiantes = new List<Estudiante>();
+        asignaturas = new List<Asignatura>();
     }
 
     public void AñadirEstudiante(Estudiante estudiante)
@@ -87,6 +88,19 @@ class ProgramaEducativo
         estudiante.MostrarCalificaciones();
         double promedio = estudiante.CalcularPromedio();
         Console.WriteLine($"Promedio final: {promedio:F2}");
+    }
+
+    public void AñadirNuevaAsignatura (Asignatura asignatura) {
+
+        if(asignaturas.Exists(e => e.Nombre == asignatura.Nombre)) {
+            {
+                Console.WriteLine($"La asignatura {asignatura.Nombre} ya existe en el programa.");
+            }
+        }
+        else {
+            asignaturas.Add(asignatura); 
+            Console.WriteLine($"La asignatura {asignatura.Nombre} ha sido añadida");
+        }
     }
 
 }
