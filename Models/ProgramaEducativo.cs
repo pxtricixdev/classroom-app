@@ -103,4 +103,38 @@ class ProgramaEducativo
         }
     }
 
+    public void RankingEstudiantes () {
+        if (estudiantes.Count == 0) {
+            Console.WriteLine("No hay estudiantes en el programa");
+        }
+
+        var ranking = estudiantes.OrderByDescending(e => e.CalcularPromedio());
+        var posicion = 1;
+        foreach (var estudiante in ranking) {
+            Console.WriteLine($"{posicion} {estudiante.Nombre} - Promedio: {estudiante.CalcularPromedio():F2}");
+            posicion++;
+        }
+    }
+
+    public void EstudiantesRiesgoSuspender() {
+        if (estudiantes.Count == 0) {
+            Console.WriteLine("No hay estudiantes en el programa");
+            return;
+        }
+
+        var riesgoSuspenso = estudiantes.Where(e => e.CalcularPromedio() < 5);
+
+        if (!riesgoSuspenso.Any()) {
+            Console.WriteLine("No hay estudiantes en riesgo de suspender");
+            return;
+        }
+
+        Console.WriteLine($"Los estudiantes en riesgo de suspender son: ");
+
+        foreach(var estudiante in riesgoSuspenso) {
+            Console.WriteLine($"{estudiante.Nombre} - Con promedio de: {estudiante.CalcularPromedio():F2}");
+        }
+
+        }
+
 }
