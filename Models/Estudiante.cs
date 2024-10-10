@@ -13,7 +13,12 @@ class Estudiante
 
     public void AñadirCalificacion(Asignatura asignatura, double calificacion)
     {
-        calificaciones[asignatura] = calificacion;
+        if (calificacion >= 0 && calificacion <=10 ) {
+            calificaciones[asignatura] = calificacion;
+        } else {
+            Console.WriteLine($"La calificación {calificacion} es inválida. Debe estar entre 0 y 10.");
+        }
+        
     }
 
     public void MostrarCalificaciones()
